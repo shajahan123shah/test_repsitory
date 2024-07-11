@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+        }
+        form {
+            display: inline-block;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete Movie</h1>
+    <p>Are you sure you want to delete the movie "{{ movie.title }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+    </form>
+    <a href="{% url 'movie_list' %}">Cancel</a>
+</body>
+</html>

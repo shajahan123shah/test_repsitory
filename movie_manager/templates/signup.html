@@ -1,0 +1,78 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .messages {
+            margin-bottom: 20px;
+        }
+        .messages .success {
+            color: green;
+        }
+        .messages .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sign Up</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="messages">
+            {% for message in messages %}
+                <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="password_confirm">Confirm Password:</label>
+        <input type="password" id="password_confirm" name="password_confirm" required>
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>

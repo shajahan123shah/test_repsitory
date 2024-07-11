@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Movie</title>
+</head>
+<body>
+    <h1>Edit Movie</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ movie.title }}" required><br>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="{{ movie.year }}"><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required>{{ movie.description }}</textarea><br>
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image"><br>
+        {% if movie.image %}
+            <img src="{{ movie.image.url }}" alt="{{ movie.title }}" width="100"><br>
+        {% endif %}
+        <label for="censor_info">Censor Info:</label>
+        <select id="censor_info" name="censor_info">
+            {% for info in censor_infos %}
+                <option value="{{ info.id }}" {% if info.id == movie.censor_info.id %}selected{% endif %}>{{ info.rating }} - {{ info.certified_by }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="director">Director:</label>
+        <select id="director" name="director">
+            {% for director in directors %}
+                <option value="{{ director.id }}" {% if director.id == movie.director.id %}selected{% endif %}>{{ director.name }}</option>
+            {% endfor%}
+</select><br>
+<label for="actors">Actors:</label>
+<select id="actors" name="actors" multiple>
+{% for actor in actors %}
+<option value="{{ actor.id }}" {% if actor in movie.actors.all %}selected{% endif %}>{{ actor.name }}</option>
+{% endfor %}
+</select><br>
+<button type="submit">Save Changes</button>
+</form>
+
+</body>
+</html>
