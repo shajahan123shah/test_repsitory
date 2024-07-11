@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,62 +11,78 @@
             background-color: #f4f4f4;
             padding: 20px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         tr:hover {
             background-color: #f1f1f1;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px;
         }
+
         h1 {
             font-family: Arial, sans-serif;
             color: #333;
         }
+
         a {
             text-decoration: none;
             color: #007BFF;
         }
+
         a:hover {
             text-decoration: underline;
         }
+
         .actions {
             display: flex;
             gap: 10px;
         }
+
         .actions a {
             padding: 5px 10px;
             border: 1px solid #007BFF;
             border-radius: 3px;
             color: #007BFF;
         }
+
         .actions a:hover {
             background-color: #007BFF;
             color: #fff;
         }
+
         .movie-img {
             width: 100px;
             height: auto;
         }
     </style>
 </head>
+
 <body>
     <h1>Movies.............</h1>
-    <a href="{% url 'create_movie' %}">Add New Movie</a>
+    <a href="{% url 'create_movie' %}">Add New Moviessss</a>
     <table>
         <thead>
             <tr>
@@ -80,32 +97,33 @@
         </thead>
         <tbody>
             {% for movie in movies %}
-                <tr>
-                    <td>{{ movie.title }}</td>
-                    <td>{{ movie.year }}</td>
-                    <td>{{ movie.description }}</td>
-                    <td>{{ movie.director.name }}</td>
-                    <td>
-                        {% for actor in movie.actors.all %}
-                            {{ actor.name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
-                    </td>
-                    
-                    <td>
-                        {% if movie.image %}
-                            <img src="{{ movie.image.url }}" alt="{{ movie.title }}" class="movie-img">
-                        {% else %}
-                            No Image
-                        {% endif %}
-                    </td>
-                    <td class="actions">
-                        <a href="{% url 'edit_movie' movie.id %}">Edit</a>
-                        <a href="{% url 'delete_movie' movie.id %}">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.description }}</td>
+                <td>{{ movie.director.name }}</td>
+                <td>
+                    {% for actor in movie.actors.all %}
+                    {{ actor.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+
+                <td>
+                    {% if movie.image %}
+                    <img src="{{ movie.image.url }}" alt="{{ movie.title }}" class="movie-img">
+                    {% else %}
+                    No Image
+                    {% endif %}
+                </td>
+                <td class="actions">
+                    <a href="{% url 'edit_movie' movie.id %}">Edit</a>
+                    <a href="{% url 'delete_movie' movie.id %}">Delete</a>
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-    
+
 </body>
+
 </html>
